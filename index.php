@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Tina Ostrander
- * 4/18/2023
+ * Ian Schroeder
+ * 05/11/2023
  * 328/diner/index.php
  * Controller for diner project
  */
@@ -13,6 +13,8 @@ error_reporting(E_ALL);
 
 // Require the autoload file
 require_once('vendor/autoload.php');
+require_once('model/data-layer.php');
+//var_dump(getMeals());
 
 // Create an F3 (Fat-Free Framework) object
 $f3 = Base::instance();
@@ -73,6 +75,9 @@ $f3->route('GET|POST /order1', function($f3) {
         $f3->reroute('order2');
     }
 
+    //get the data from the model and add it to the hive
+    $f3->set('meals', getMeals());
+
     // Display a view page
     $view = new Template();
     echo $view->render('views/orderForm1.html');
@@ -100,6 +105,9 @@ $f3->route('GET|POST /order2', function($f3) {
         //Redirect to the summary route
         $f3->reroute('summary');
     }
+
+    // get the data from the model and add it to the hive
+    $f3->set('condiments', getCondiments());
 
     // Display a view page
     $view = new Template();
