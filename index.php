@@ -128,6 +128,12 @@ $f3->route('GET|POST /order2', function($f3) {
         //echo $conds;
 
         //Validate the data
+        if (validCondiments($conds)) {
+            $f3->set('SESSION.conds', $conds);
+        }
+        else {
+            $f3->set('errors["conds"]','Those are not what was displayed');
+        }
 
         //Store the data in the session array
         $f3->set('SESSION.condiments', $conds);

@@ -15,6 +15,9 @@
                                   value="{{ @condiment }}"
                             > {{ ucfirst(@condiment) }}</label><br>
                 </repeat>
+                <check if="{{ isset(@errors['condiments']) }}">
+                    <span>{{ @errors['condiments'] }}</span>
+                </check>
 
             </div>
         </div>
